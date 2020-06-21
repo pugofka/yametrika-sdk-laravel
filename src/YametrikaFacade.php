@@ -5,7 +5,7 @@ namespace Pugofka\Yametrika;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Pugofka\Yametrika\Yametrika
+ * @see \Pugofka\Yametrika\YametrikaClient
  */
 class YametrikaFacade
 {
