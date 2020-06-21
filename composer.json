@@ -1,0 +1,63 @@
+{
+    "name": "pugofka/yametrika-sdk-laravel",
+    "description": "Laravel package for Yandex Metrika SDK",
+    "keywords": [
+        "pugofka",
+        "yametrika-sdk-laravel",
+        "yandex",
+        "metrika",
+        "yushkevichv"
+    ],
+    "homepage": "https://github.com/pugofka/yametrika-sdk-laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yushkevich Vitaly",
+            "email": "yushkevichv@gmail.com",
+            "homepage": "https://pugofka.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "orchestra/testbench": "^5.0",
+        "phpunit/phpunit": "^9.0",
+        "psalm/plugin-laravel": "^1.2",
+        "vimeo/psalm": "^3.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pugofka\\Yametrika\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pugofka\\Yametrika\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "psalm": "vendor/bin/psalm",
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pugofka\\Yametrika\\YametrikaServiceProvider"
+            ],
+            "aliases": {
+                "Skeleton": "Pugofka\\Yametrika\\YametrikaFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
