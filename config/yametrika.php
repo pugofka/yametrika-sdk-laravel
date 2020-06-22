@@ -8,6 +8,7 @@ return [
      * @link https://oauth.yandex.ru/client/new
      *
      */
-    'app_id' => env('YMETRIKA_APP', 'test app')
+    'app_id' => env('YMETRIKA_APP', 'test app'),
+    'token' => env('YMETRIKA_TOKEN')
 
 ];

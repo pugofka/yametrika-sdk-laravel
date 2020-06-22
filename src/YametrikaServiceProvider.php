@@ -4,6 +4,10 @@ namespace Pugofka\Yametrika;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class YametrikaServiceProvider
+ * @package Pugofka\Yametrika
+ */
 class YametrikaServiceProvider extends ServiceProvider
 {
     public function boot()
@@ -13,6 +17,9 @@ class YametrikaServiceProvider extends ServiceProvider
                 __DIR__.'/../config/yametrika.php' => config_path('yametrika.php'),
             ], 'config');
         }
+
+        $this->app->singleton(\Pugofka\Yametrika\YametrikaClient::class);
+        $this->app->singleton(\Pugofka\Yametrika\YametrikaCounters::class);
     }
 
     public function register()

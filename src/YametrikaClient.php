@@ -24,6 +24,7 @@ class YametrikaClient
     public function __construct()
     {
         $this->appId = config('yametrika.app_id');
+        $this->token = config('yametrika.token');
     }
 
     /**
@@ -58,7 +59,7 @@ class YametrikaClient
      */
     public function isTokenExist(): bool
     {
-        return isset($this->token);
+        return (isset($this->token) && !empty($this->token));
     }
 
 }

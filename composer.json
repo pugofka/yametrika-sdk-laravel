@@ -57,7 +57,7 @@
                 "Pugofka\\Yametrika\\YametrikaServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "Pugofka\\Yametrika\\YametrikaFacade"
+                "Yametrika": "Pugofka\\Yametrika\\YametrikaFacade"
             }
         }
     },
