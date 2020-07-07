@@ -1,6 +1,7 @@
 # Laravel SDK client to Yandex.Metrika service
 
 This is not offical package.
+Can work with static configuration for one project and with dynamically configuration at runtime for SAAS.
 
 ## Usage
 1. Create new app [link](https://oauth.yandex.ru/client/new)
@@ -25,4 +26,16 @@ YametrikaClient class is singleton.
 YametrikaCounters class response for work with counters. getCounters() method return array of counters
 
 ## Reports
+
+Before use Reports, you should set app_id, token and counter_id.
+
+### Ecom report
+
+Get data for ecom report.
+```php
+$ecomReport = resolve(\Pugofka\Yametrika\YametrikaEcomReports::class);
+$ecomData = $ecomReport->getEcomData(\Carbon\Carbon::today()->subYears(1), \Carbon\Carbon::today(), $limit = 500, $offset = 1);
+```
+
+
 

@@ -21,10 +21,18 @@ class YametrikaClient
      */
     protected $token;
 
+    /**
+     * Selected counter ID
+     *
+     * @var int
+     */
+    protected $counterId;
+
     public function __construct()
     {
         $this->appId = config('yametrika.app_id');
         $this->token = config('yametrika.token');
+        $this->counterId = config('yametrika.counter_id') ? (int) config('yametrika.counter_id') : null;
     }
 
     /**
@@ -46,6 +54,14 @@ class YametrikaClient
     }
 
     /**
+     * @return string|null
+     */
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    /**
      * @param  string  $token
      */
     public function setToken(string $token)
@@ -54,11 +70,19 @@ class YametrikaClient
     }
 
     /**
-     * @return string|null
+     * @return int|null
      */
-    public function getToken() :?string
+    public function getCounterId(): ?int
     {
-        return $this->token;
+        return $this->counterId;
+    }
+
+    /**
+     * @param  int  $counterId
+     */
+    public function setCounterId(int $counterId): void
+    {
+        $this->counterId = $counterId;
     }
 
     /**
@@ -68,6 +92,15 @@ class YametrikaClient
     public function isTokenExist(): bool
     {
         return (isset($this->token) && !empty($this->token));
+    }
+
+    /**
+     * check is set token
+     * @return bool
+     */
+    public function isCounterExist(): bool
+    {
+        return (bool) $this->counterId;
     }
 
 }

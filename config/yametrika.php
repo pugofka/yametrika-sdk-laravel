@@ -9,6 +9,15 @@ return [
      *
      */
     'app_id' => env('YMETRIKA_APP', 'test app'),
-    'token' => env('YMETRIKA_TOKEN')
+
+    /**
+     * Auth token. Can be set statically from config or dynamically at runtime
+     */
+    'token' => env('YMETRIKA_TOKEN'),
+
+    /**
+     * Counter id. Can be set statically from config or dynamically at runtime
+     */
+    'counter_id' => env('YMETRIKA_COUNTER'),
 
 ];

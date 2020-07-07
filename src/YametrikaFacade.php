@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \Pugofka\Yametrika\YametrikaClient
  */
-class YametrikaFacade
+class YametrikaFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
