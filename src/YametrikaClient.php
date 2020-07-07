@@ -54,6 +54,14 @@ class YametrikaClient
     }
 
     /**
+     * @return string|null
+     */
+    public function getToken() :?string
+    {
+        return $this->token;
+    }
+
+    /**
      * check is set token
      * @return bool
      */

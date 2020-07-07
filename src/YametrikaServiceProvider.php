@@ -19,7 +19,6 @@ class YametrikaServiceProvider extends ServiceProvider
         }
 
         $this->app->singleton(\Pugofka\Yametrika\YametrikaClient::class);
-        $this->app->singleton(\Pugofka\Yametrika\YametrikaCounters::class);
     }
 
     public function register()
