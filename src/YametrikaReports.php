@@ -5,7 +5,6 @@ namespace Pugofka\Yametrika;
 
 use Carbon\Carbon;
 use Illuminate\Http\Client\RequestException;
-use Illuminate\Support\Facades\Http;
 
 /**
  * Class YametrikaEcomReports
@@ -32,9 +31,9 @@ class YametrikaReports extends YametrikaReportBase
             'ids' => $this->client->getCounterId(),
             'date1' => $dateFrom->format('Y-m-d'),
             'date2' => $dateTo->format('Y-m-d'),
-            'metrics'    => 'ym:s:visits,ym:s:pageviews,ym:s:users',
+            'metrics' => 'ym:s:visits,ym:s:pageviews,ym:s:users',
             'dimensions' => 'ym:s:date',
-            'sort'       => 'ym:s:date',
+            'sort' => 'ym:s:date',
             'group' => 'Day',
             'accuracy' => 'medium',
         ];
@@ -63,7 +62,7 @@ class YametrikaReports extends YametrikaReportBase
             'accuracy' => 'medium',
         ];
 
-        if($parent_id) {
+        if ($parent_id) {
             $urlParams['parent_id'] = '["'.$parent_id.'"]';
         }
         $url .= $this->convertUrlParamsToUriForDrilldown($urlParams);
@@ -72,20 +71,31 @@ class YametrikaReports extends YametrikaReportBase
     }
 
     /**
-     * tags_u_t_m, drilldown, квартал, понедельно
+     *
      *
      * @param  Carbon  $dateFrom
      * @param  Carbon  $dateTo
      * @return array
+     * @throws RequestException
      */
     public function getUTMReport(Carbon $dateFrom, Carbon $dateTo): array
     {
-        return [];
+        // @todo drilldown works just for one level deep. Maybe to restructure flat data
+        $url = $this->getUrlByType('data');
 
+        $urlParams = [
+            'ids' => $this->client->getCounterId(),
+            'date1' => $dateFrom->format('Y-m-d'),
+            'date2' => $dateTo->format('Y-m-d'),
+            'preset' => 'tags_u_t_m',
+            'accuracy' => 'medium',
+        ];
+
+        return $this->request($urlParams, $url);
     }
 
     /**
-     * adv_engine, drilldown, квартал, понедельно
+     * Adversting traffic report top 10
      *
      * @param  Carbon  $dateFrom
      * @param  Carbon  $dateTo
@@ -93,12 +103,22 @@ class YametrikaReports extends YametrikaReportBase
      */
     public function getADVEngineReport(Carbon $dateFrom, Carbon $dateTo): array
     {
-        return [];
+        $url = $this->getUrlByType('data');
 
+        $urlParams = [
+            'ids' => $this->client->getCounterId(),
+            'date1' => $dateFrom->format('Y-m-d'),
+            'date2' => $dateTo->format('Y-m-d'),
+            'preset' => 'adv_engine',
+            'limit' => 10,
+            'accuracy' => 'medium',
+        ];
+
+        return $this->request($urlParams, $url);
     }
 
     /**
-     * tech_devices, data, квартал, итого
+     * Report by device type
      *
      * @param  Carbon  $dateFrom
      * @param  Carbon  $dateTo
@@ -106,10 +126,19 @@ class YametrikaReports extends YametrikaReportBase
      */
     public function getDeviceReport(Carbon $dateFrom, Carbon $dateTo): array
     {
-        return [];
+        $url = $this->getUrlByType('data');
 
+        $urlParams = [
+            'ids' => $this->client->getCounterId(),
+            'date1' => $dateFrom->format('Y-m-d'),
+            'date2' => $dateTo->format('Y-m-d'),
+            'metrics' => 'ym:s:visits,ym:s:users',
+            'dimensions' => 'ym:s:deviceCategory',
+            'sort' => '-ym:s:visits',
+            'accuracy' => 'medium',
+        ];
+
+        return $this->request($urlParams, $url);
     }
-
-
 
 }

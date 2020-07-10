@@ -42,4 +42,17 @@ class YametrikaEcomReports extends YametrikaReportBase
         return $this->request($urlParams, $url);
     }
 
+    /**
+     * Api method for work with raw queries to Yandex
+     *
+     * @param  array  $data
+     * @param  string  $urlPostfix
+     * @return array
+     * @throws RequestException
+     */
+    public function getRawReportData(array $data = [], string $urlPostfix = ''): array
+    {
+        return $this->request($data, $urlPostfix);
+    }
+
 }
