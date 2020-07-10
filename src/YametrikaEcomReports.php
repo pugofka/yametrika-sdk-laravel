@@ -23,6 +23,8 @@ class YametrikaEcomReports extends YametrikaReportBase
      */
     public function getEcomData(Carbon $dateFrom, Carbon $dateTo, $limit = 500, $offset = 1): array
     {
+        $url = $this->getUrlByType('data');
+
         $urlParams = [
             'ids' => $this->client->getCounterId(),
             'date1' => $dateFrom->format('Y-m-d'),
@@ -30,13 +32,14 @@ class YametrikaEcomReports extends YametrikaReportBase
             'metrics' => 'ym:s:mobilePercentage, ym:s:visits, ym:s:ecommercePurchases, ym:s:ecommerceRUBRevenuePerVisit, ym:s:ecommerceRUBRevenuePerPurchase',
             'dimensions' => 'ym:s:purchaseID,ym:s:firstTrafficSource,ym:s:firstSourceEngine,ym:s:lastsignTrafficSource,ym:s:lastsignSourceEngine',
             'sort' => 'ym:s:purchaseID',
+            'group' => 'Day',
             'preset' => 'purchase',
             'limit' => $limit,
             'offset' => $offset,
-            'sampled' => false,
+            'accuracy' => 'full',
         ];
 
-        return $this->request($urlParams, '/data');
+        return $this->request($urlParams, $url);
     }
 
 }
