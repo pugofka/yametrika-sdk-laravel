@@ -99,10 +99,10 @@ abstract class YametrikaReportBase
     /**
      * Helper for convert Java list to Uri
      *
-     * @param $urlParams
+     * @param array  $urlParams
      * @return string
      */
-    protected function convertUrlParamsToUriForDrilldown($urlParams): string
+    protected function convertUrlParamsToUriForDrilldown(array $urlParams): string
     {
         $url = '?';
         collect($urlParams)->each(function ($param, $key) use (&$url) {
