@@ -48,7 +48,6 @@ abstract class YametrikaReportBase
         ])->get($this->baseUrl.$url, (count($params) > 0) ? $params : null);
 
         if ($response->failed()) {
-            dd($response->json());
             throw new Exception($response->json()['message'] ?? 'HTTP request returned status code '.$response->status());
         }
 

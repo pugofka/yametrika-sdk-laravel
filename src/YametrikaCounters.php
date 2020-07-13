@@ -43,12 +43,12 @@ class YametrikaCounters
         ])->get('https://api-metrika.yandex.net/management/v1/counters?status=Active');
 
         if ($response->status() === 401) {
-            throw new Exception($response->json()['message'] ?? 'Invalid token');
+            throw new Exception(array_key_exists('message', $response->json()) ? $response->json()['message'] : 'Invalid token');
         } elseif ($response->status() !== 200) {
-            throw new Exception($response->json()['message'] ?? 'Yandex error');
+            throw new Exception(array_key_exists('message', $response->json()) ? $response->json()['message'] : 'Yandex error');
         }
 
-        $data = collect($response->json()['counters']) ?? null;
+        $data = array_key_exists('counters', $response->json()) ? collect($response->json()['counters']) ?? null : null;
         if (!$data) {
             return [];
         }
