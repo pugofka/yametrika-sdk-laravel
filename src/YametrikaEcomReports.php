@@ -43,6 +43,36 @@ class YametrikaEcomReports extends YametrikaReportBase
     }
 
     /**
+     * @param  Carbon  $dateFrom
+     * @param  Carbon  $dateTo
+     * @param  int  $limit
+     * @param  int  $offset
+     * @return array
+     * @throws RequestException
+     */
+    public function getPurchaseEcomData(Carbon $dateFrom, Carbon $dateTo, $limit = 500, $offset = 1): array
+    {
+        $url = $this->getUrlByType('time');
+
+        $urlParams = [
+            'ids' => $this->client->getCounterId(),
+            'date1' => $dateFrom->format('Y-m-d'),
+            'date2' => $dateTo->format('Y-m-d'),
+            'metrics' => 'ym:s:ecommercePurchases',
+            'dimensions' => 'ym:s:lastSourceEngine',
+            'group' => 'day',
+            'sort' => 'ym:s:ecommercePurchases',
+            'preset' => 'purchase',
+            'limit' => $limit,
+            'offset' => $offset,
+            'accuracy' => 'full',
+            'top_keys' => 10
+        ];
+
+        return $this->request($urlParams, $url);
+    }
+
+    /**
      * Api method for work with raw queries to Yandex
      *
      * @param  array  $data
