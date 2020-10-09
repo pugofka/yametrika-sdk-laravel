@@ -45,12 +45,13 @@ class YametrikaEcomReports extends YametrikaReportBase
     /**
      * @param  Carbon  $dateFrom
      * @param  Carbon  $dateTo
+     * @param  String  $group
      * @param  int  $limit
      * @param  int  $offset
      * @return array
      * @throws RequestException
      */
-    public function getPurchaseEcomData(Carbon $dateFrom, Carbon $dateTo, $limit = 500, $offset = 1): array
+    public function getPurchaseEcomData(Carbon $dateFrom, Carbon $dateTo, String $group = 'week', $limit = 500, $offset = 1): array
     {
         $url = $this->getUrlByType('time');
 
@@ -58,9 +59,8 @@ class YametrikaEcomReports extends YametrikaReportBase
             'ids' => $this->client->getCounterId(),
             'date1' => $dateFrom->format('Y-m-d'),
             'date2' => $dateTo->format('Y-m-d'),
-            'metrics' => 'ym:s:ecommercePurchases',
             'dimensions' => 'ym:s:lastSourceEngine',
-            'group' => 'day',
+            'group' => $group,
             'sort' => 'ym:s:ecommercePurchases',
             'preset' => 'purchase',
             'limit' => $limit,
