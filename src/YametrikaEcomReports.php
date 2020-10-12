@@ -59,7 +59,7 @@ class YametrikaEcomReports extends YametrikaReportBase
             'ids' => $this->client->getCounterId(),
             'date1' => $dateFrom->format('Y-m-d'),
             'date2' => $dateTo->format('Y-m-d'),
-            'dimensions' => 'ym:s:lastSourceEngine',
+            'dimensions' => 'ym:s:lastTrafficSource',
             'group' => $group,
             'sort' => 'ym:s:ecommercePurchases',
             'preset' => 'purchase',
