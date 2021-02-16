@@ -31,10 +31,11 @@ Before use Reports, you should set app_id, token and counter_id.
 
 ### Ecom report
 
-Get data for ecom report.
+Get data for ecom reports.
 ```php
 $ecomReport = resolve(\Pugofka\Yametrika\YametrikaEcomReports::class);
 $ecomData = $ecomReport->getEcomData(\Carbon\Carbon::today()->subYears(1), \Carbon\Carbon::today(), $limit = 500, $offset = 1);
+$ecomSources = $ecomReport->getEcomSourcesReport(\Carbon\Carbon::today()->subWeek(), \Carbon\Carbon::today(), $limit = 500, $offset = 1);
 ```
 
 
