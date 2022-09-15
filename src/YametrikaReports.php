@@ -18,8 +18,6 @@ class YametrikaReports extends YametrikaReportBase
      *
      * @param  Carbon  $dateFrom
      * @param  Carbon  $dateTo
-     * @param  int  $limit
-     * @param  int  $offset
      * @return array
      * @throws RequestException
      */
